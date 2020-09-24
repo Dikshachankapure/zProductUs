@@ -1,0 +1,129 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="productUs.zProductUs.controller.Tile"
+	xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true" xmlns:tnt="sap.tnt"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:semantic="sap.m.semantic"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:layout="sap.ui.layout">
+	<App>
+		<tnt:ToolPage id="toolPage">
+			<tnt:header>
+				<tnt:ToolHeader>
+					<Button id="sideNavigationToggleButton" icon="sap-icon://menu2" type="Transparent" press="onSideNavButtonPress">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow"/>
+						</layoutData>
+					</Button>
+					<ToolbarSpacer width="20px"/>
+					
+					<tnt:ToolHeaderUtilitySeparator/>
+					<ToolbarSpacer>
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px"/>
+						</layoutData>
+					</ToolbarSpacer>
+					<Button icon="sap-icon://search" type="Transparent" press="OnSearch"  id="obtnSearch">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</Button>
+					
+						<SearchField id="txtSearch" width="40%" class="sapUiSmallMargin" liveChange="onSearch"  visible="false"/>
+				
+					<Button icon="sap-icon://comment" type="Transparent" press="OnDialogPress">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</Button>
+					<Button icon="sap-icon://sys-help-2" type="Transparent">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</Button>
+					<Button icon="sap-icon://customer" type="Transparent"  press="OnUser">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</Button>
+				</tnt:ToolHeader>
+			</tnt:header>
+			<tnt:sideContent>
+				<tnt:SideNavigation expanded="true" itemSelect="onItemSelect">
+					<tnt:NavigationList >
+						<tnt:NavigationListItem icon="sap-icon://area-chart" select="OnSelect"></tnt:NavigationListItem>
+						<tnt:NavigationListItem icon="sap-icon://chevron-phase-2" select="OnPressNavToPage3"></tnt:NavigationListItem>
+						<tnt:NavigationListItem icon="sap-icon://activity-items"></tnt:NavigationListItem>
+						<tnt:NavigationListItem icon="sap-icon://collaborate"></tnt:NavigationListItem>
+					</tnt:NavigationList>
+				</tnt:SideNavigation>
+			</tnt:sideContent>
+			<tnt:mainContents>
+				<NavContainer id="pageContainer" initialPage="page2">
+					<pages>
+						<ScrollContainer id="page2" horizontal="false" vertical="true" height="100%">
+							<Panel expandable="true" expanded="true">
+								<content>
+								
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" id="tlTile" header="Billing Documents" press="press">
+										<TileContent unit="EUR" footer="Current Quarter">
+											<NumericContent scale="M" value="1.96" valueColor="Error" indicator="Up" withMargin="false"/>
+										</TileContent>
+									</GenericTile>
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Sales By Month Tile" press="Onpress">
+										<TileContent unit="Unit">
+											<NumericContent scale="%" value="12" valueColor="Critical" indicator="Up" withMargin="false"/>
+										</TileContent>
+									</GenericTile>
+								</content>
+							</Panel>
+							<layout:FixFlex id="chartFixFlex" minFlexSize="500">
+								<layout:flexContent>
+									<viz:Popover id="idPopOver"/>
+									<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height="100%" width="100%" vizType="bar" visible="false">
+										<viz:dataset>
+											<viz.data:FlattenedDataset data="{/ChartByAmount}">
+												<viz.data:dimensions>
+													<viz.data:DimensionDefinition name="To Be Posted" value="{Sales}"/>
+												</viz.data:dimensions>
+												<viz.data:measures>
+													<viz.data:MeasureDefinition name="Debit" value="{Debit}"/>
+													<viz.data:MeasureDefinition name="Credit" value="{Credit}"/>
+													<viz.data:MeasureDefinition name="Invoices" value="{Invoices}"/>
+												</viz.data:measures>
+											</viz.data:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<viz.feeds:FeedItem id='valueAxisFeed1' uid="valueAxis" type="Measure" values="Debit"/>
+											<viz.feeds:FeedItem id='valueAxisFeed2' uid="valueAxis" type="Measure" values="Credit"/>
+											<viz.feeds:FeedItem id='valueAxisFeed3' uid="valueAxis" type="Measure" values="Invoices"/>
+											<viz.feeds:FeedItem id="categoryAxisFeed" uid="categoryAxis" type="Dimension" values="To Be Posted"/>
+										</viz:feeds>
+									</viz:VizFrame>
+								</layout:flexContent>
+							</layout:FixFlex>
+							<layout:FixFlex id="chartFixFlex1" minFlexSize="500">
+								<layout:flexContent>
+									<viz:Popover id="idPopOver1"/>
+									<viz:VizFrame id="idVizFrame1" uiConfig="{applicationSet:'fiori'}" height="100%" width="100%" vizType="vertical_bullet" visible="false">
+										<viz:dataset>
+											<viz.data:FlattenedDataset data="{/SalesByMonth}">
+												<viz.data:dimensions>
+													<viz.data:DimensionDefinition name="Sales" value="{Sales}"/>
+												</viz.data:dimensions>
+												<viz.data:measures>
+													<viz.data:MeasureDefinition name="Value 1" value="{Value 1}"/>
+												</viz.data:measures>
+											</viz.data:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<viz.feeds:FeedItem id='valueAxisFeed11' uid="valueAxis" type="Measure" values="Value 1"/>
+											<viz.feeds:FeedItem id="categoryAxisFeed1" uid="categoryAxis" type="Dimension" values="Sales"/>
+										</viz:feeds>
+									</viz:VizFrame>
+								</layout:flexContent>
+							</layout:FixFlex>
+						</ScrollContainer>
+					</pages>
+				</NavContainer>
+			</tnt:mainContents>
+		</tnt:ToolPage>
+	</App>
+</mvc:View>

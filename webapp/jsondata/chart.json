@@ -1,0 +1,69 @@
+{
+	"ChartByAmount": [{
+		"Sales": "To Be Posted",
+		"Debit": 5,
+		"Credit": 10,
+		"Invoices": 20
+
+	}, {
+		"Sales": "Not Relevent",
+		"Debit": 10,
+		"Credit": 20,
+		"Invoices": 15
+
+	}, {
+		"Sales": "Incomplete",
+		"Debit": 12,
+		"Credit": 16,
+		"Invoices": 25
+
+	}, {
+		"Sales": "Completed",
+		"Debit": 10,
+		"Credit": 15,
+		"Invoices": 17
+	}, {
+		"Sales": "Cancled",
+		"Debit": 5,
+		"Credit": 20,
+		"Invoices": 15
+
+	}],
+	"SalesByMonth": [{
+		"Sales": "Jan-19",
+		"Value 1": "20000"
+	
+
+	}, {
+		"Sales": "Feb-19",
+		"Value 1": "20000"
+
+	}, {
+		"Sales": "Mar-19",
+		"Value 1": "65000"
+
+	}, {
+		"Sales": "Apr-19",
+		"Value 1": "47000"
+
+	}, {
+		"Sales": "May-19",
+		"Value 1": "35000"
+
+	}, {
+		"Sales": "June-19",
+		"Value 1": "85000"
+
+	}, {
+		"Sales": "July-19",
+		"Value 1": "67000"
+
+	}, {
+		"Sales": "Aug-19",
+		"Value 1": "78000"
+
+	}, {
+		"Sales": "Sep-19",
+		"Value 1": "110000"
+	}]
+}

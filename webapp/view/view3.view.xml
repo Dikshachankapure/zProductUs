@@ -1,0 +1,165 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="productUs.zProductUs.controller.view3"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:semantic="sap.m.semantic" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:layout="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:card="sap.f.cards"
+	displayBlock="true" height="100%">
+	<App>
+		<tnt:ToolPage id="toolPage">
+			<tnt:header >
+				<tnt:ToolHeader >
+					<Button id="sideNavigationToggleButton" icon="sap-icon://menu2" type="Transparent" press="onSideNavButtonPress">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow"/>
+						</layoutData>
+					</Button>
+					<ToolbarSpacer width="20px"/>
+					
+					<tnt:ToolHeaderUtilitySeparator/>
+					<ToolbarSpacer>
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px"/>
+						</layoutData>
+					</ToolbarSpacer>
+					<Button icon="sap-icon://search" type="Transparent" press="OnSearch" id="obtnSearch">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</Button>
+				
+					<SearchField id="txtSearch" width="40%" class="sapUiSmallMargin" liveChange="onSearch"  visible="false"/>
+					<Button icon="sap-icon://comment" type="Transparent"  press="OnDialogPress">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</Button>
+					<Button icon="sap-icon://sys-help-2" type="Transparent">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</Button>
+					<Button icon="sap-icon://customer" type="Transparent"  press="OnUser">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</Button>
+				</tnt:ToolHeader>
+			</tnt:header>
+			<tnt:sideContent>
+				<tnt:SideNavigation expanded="true" itemSelect="onItemSelect">
+					<tnt:NavigationList >
+						<tnt:NavigationListItem icon="sap-icon://area-chart" select="OnPressNavToPage2"></tnt:NavigationListItem>
+						<tnt:NavigationListItem icon="sap-icon://chevron-phase-2" select="OnPress"></tnt:NavigationListItem>
+						<tnt:NavigationListItem icon="sap-icon://activity-items"></tnt:NavigationListItem>
+						<tnt:NavigationListItem icon="sap-icon://collaborate"></tnt:NavigationListItem>
+					</tnt:NavigationList>
+					<!--	<tnt:fixedItem>
+					<tnt:NavigationList >
+						<tnt:NavigationListItem text="{title}" icon="sap-icon://action-settings"></tnt:NavigationListItem>
+						<tnt:NavigationListItem text="{title}" icon="sap-icon://action-settings"></tnt:NavigationListItem>
+					</tnt:NavigationList>
+				</tnt:fixedItem>-->
+				</tnt:SideNavigation>
+			</tnt:sideContent>
+			<tnt:mainContents>
+				<NavContainer id="pageContainer" initialPage="page2">
+					<pages>
+						<ScrollContainer id="page2" horizontal="false" vertical="true" height="100%">
+							<f:Card class="sapUiMediumMargin" width="300px">
+								<f:header>
+									<card:Header title="Block Credit Memo Request" subtitle="Sorted By"/>
+								</f:header>
+								<f:content>
+									<VBox height="115px" class="sapUiSmallMargin" justifyContent="SpaceBetween">
+										<HBox justifyContent="SpaceBetween">
+											<ComboBox width="100%" placeholder="Select" >
+												<core:Item key="1" text="Request 1"/>
+												<core:Item key="2" text="Request 2"/>
+												<core:Item key="3" text="Request 3"/>
+											</ComboBox>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<DatePicker width="186px" placeholder="Choose Date ..."/>
+											<Button text="Request" press="onBookPress" type="Emphasized"/>
+										</HBox>
+									</VBox>
+								</f:content>
+							</f:Card>
+							<f:Card class="sapUiMediumMargin" width="300px">
+								<f:header>
+									<card:Header title="Open Sales Order" subtitle="Sorted By"/>
+								</f:header>
+								<f:content>
+									<List showSeparators="None" items="{/List}">
+										<CustomListItem  type="Active">
+											<HBox alignItems="Center" justifyContent="SpaceBetween">
+												<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+													<Title level="H3" text="{CompanyName}"/>
+													<Text text="{City}"/>
+												</VBox>
+												<ObjectStatus class="sapUiTinyMargin" text="{Phone}" />
+											</HBox>
+										</CustomListItem>
+									</List>
+								</f:content>
+							</f:Card>
+							
+							
+							
+								<f:Card class="sapUiMediumMargin" width="300px">
+								<f:header>
+									<card:Header title="Customer Contact" subtitle="Sorted By"/>
+								</f:header>
+								<f:content>
+								<Table id="tblMaintanance" items="{/Maintanance}"  inset="false" class="sapUiResponsiveMargin" growing="true" growingThreshold="10"
+							growingScrollToLoad="true" width="auto"  >
+						
+							<columns>
+								<Column width="auto">
+									<Text text="Customer"/>
+								</Column>
+								<Column width="auto">
+									<Text text="Classification"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Contact"/>
+								</Column>
+							
+							</columns>
+							<items   >
+								<ColumnListItem type="Navigation" press="onEdit" >
+									<cells>
+										<Text text="{RequestNo}"/>
+										<Text text="{PlantName}"/>
+										<Text text="{Workcenter}"/>
+										<Text text="{Priority}"/>
+										<Text text="{Date}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+								</f:content>
+							</f:Card>
+							
+								<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" id="tlTile" header="Customer Returns" press="press">
+								<TileContent unit="EUR" footer="Current Quarter">
+									<NumericContent scale="M" value="1.96" valueColor="Error" indicator="Up" withMargin="false"/>
+								</TileContent>
+							</GenericTile>
+							
+							
+								<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" id="tlTile1" header="Sales Quotation" press="press">
+								<TileContent unit="EUR" footer="Current Quarter">
+									<NumericContent scale="M" value="1.96" valueColor="Error" indicator="Up" withMargin="false"/>
+								</TileContent>
+							</GenericTile>
+							
+						</ScrollContainer>
+						<ScrollContainer id="root2" horizontal="false" vertical="true" height="100%">
+							<Text text="This is the root page of the second element"></Text>
+						</ScrollContainer>
+					</pages>
+				</NavContainer>
+			</tnt:mainContents>
+		</tnt:ToolPage>
+	</App>
+</mvc:View>

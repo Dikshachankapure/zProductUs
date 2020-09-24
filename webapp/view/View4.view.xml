@@ -1,0 +1,20 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="productUs.zProductUs.controller.View4"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="SAC">
+				<content>
+					<IconTabBar id="idIconTabBar" upperCase="true" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter text="sap">
+								<html:iframe src="http://www.google.com" height="100%" width="100%"/>
+							</IconTabFilter>
+							
+							
+						</items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
